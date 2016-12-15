@@ -1,0 +1,40 @@
+<!doctype html>
+
+<html>
+	<head>
+		<title> Connect 4 </title>
+		<link rel="stylesheet" href="styles.css">
+	</head>
+	
+	<body>
+
+		<audio autoplay><source src="background.mp3" type="audio/mpeg"> </audio>
+
+		<h3 id = "room-title">Enter the name of the room you wish to join</h3>
+		<input id="room-input"></input></span><br>
+		<button type="button" class="btn btn-primary" id="room-submit">Join room</button>
+
+		<h3 id = "begin-title"> Begin match! </h3>
+
+		<h3 id="room-id">Room ID: Not Yet Joined</h3>
+  		<h3 id="player-id">Player ID: None</h3>
+  		<h3 id="turn-id">Turn Number: None</h3>
+
+  		<h3 class="victory">Congratulations, you have won!</h3>
+  		<h3 class="victory">Harambe would have been proud.</h3>
+  		<h3 class="victory">Join or create a new room to save Harambe!</h3>
+  		<h3 class="defeat">Sadly, you have been bested.</h3>
+  		<h3 class="defeat">Harambe is disappointed in you, my child.</h3>
+  		<h3 class="defeat">Join or create a new room to restore Harambe's faith!</h3>
+
+		<div id = "board"> </div>
+
+		<h3 id="patience">Harambe says...patience you must have.</h3>
+
+		<script src="https://cdn.socket.io/socket.io-1.2.0.js"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+	    <script src="./client.js"></script>
+	    <script src="./main.js"></script>
+	</body>
+
+</html>

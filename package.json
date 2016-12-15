@@ -1,0 +1,12 @@
+{
+  "name": "Connect 4",
+  "version": "0.0.1",
+  "description": "CIS 197 Final Project",
+  "dependencies": {
+    "consolidate": "^0.14.5",
+    "express": "^4.14.0",
+    "mustache": "^2.3.0",
+    "path": "^0.12.7",
+    "socket.io": "^1.7.2"
+  }
+}
