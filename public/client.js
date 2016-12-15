@@ -65,7 +65,7 @@ socket.on('update-turn', function (room) {
 });
 
 socket.on('color-cell', function (r, c, turn) {
-	var audio = Audio("stuffed-and-dropped.mp3");
+	var audio = new Audio("stuffed-and-dropped.mp3");
 	audio.play();
 	var $cell = $('.cell');
 	$cell.each(function () {
