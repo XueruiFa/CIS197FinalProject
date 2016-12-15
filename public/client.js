@@ -31,6 +31,12 @@ socket.on('lose', function () {
 
 socket.on('tie', function () {
 	console.log("You tied!");
+	$('.tie').css("display", "block");
+	$("#room-title").css('display', 'block');
+	$("#room-input").css('display', 'inline');
+	$("#room-submit").css('display', 'inline');
+	$('#player-id').css('display', 'none');
+	$('#turn-id').css('display', 'none');
 	socket.disconnect();
 });
 

@@ -34,6 +34,7 @@ h3 {
 
 #patience {
 	display: none;
+	margin-bottom: 50px;
 }
 
 .victory {
@@ -41,6 +42,10 @@ h3 {
 }
 
 .defeat {
+	display: none;
+}
+
+.tie {
 	display: none;
 }
 
