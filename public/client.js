@@ -4,6 +4,7 @@ var myRoom;
 var myBoard = [];
 
 socket.on('room-full', function () {
+	$('.room-full').css('display', 'inline');
 	console.log("Room is currently full, please try again later!");
 });
 
