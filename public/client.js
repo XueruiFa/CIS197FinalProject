@@ -3,6 +3,52 @@ var player = 0;
 var myRoom;
 var myBoard = [];
 
+var Game = function (board) {
+	myGame = this;
+	this.$board = board.$board;
+}
+
+Game.prototype.initiateBoard = function () {
+	for (var i = 0; i < 6; i++) {
+		var $newRow = $('<div>');
+		for (var j = 0; j < 8; j++) {
+			var $newCol = $('<div>');
+			$newCol.attr({
+				row: i,
+				col: j
+			});
+			$newCol.addClass('cell');
+			$newRow.append($newCol);
+		}
+		$newRow.addClass('row');
+		$('#board').append($newRow);
+	}
+
+	$('.cell').on('click', function () {
+		var row = $(this).attr('row');
+		var col = $(this).attr('col');
+		console.log('Row: ' + row + ', Col:' + col);
+	});
+
+	$('.cell').on('click', this.clicked);
+
+	$('#room-submit').on('click', function (e) {
+	    var room = $('#room-input').val();
+	    $('#room-id').html('Room: ' + room);
+	    socket.emit('join-room', room);
+	    myRoom = room;
+	    $('#room-input').val('');
+  	});
+}
+
+Game.prototype.clicked = function (e) {
+	var cell = e.target;
+	var row = $(cell).attr('row');
+	var col = $(cell).attr('col');
+
+	socket.emit('update-state', myRoom, player, row, col);
+}
+
 socket.on('room-full', function () {
 	$('.room-full').css('display', 'inline');
 	console.log('Room is currently full, please try again later!');
@@ -78,50 +124,4 @@ socket.on('color-cell', function (r, c, turn) {
 
 socket.on('error', function(e) {
 	console.log('Hit error: ' + e);
-})
-
-var Game = function (board) {
-	myGame = this;
-	this.$board = board.$board;
-}
-
-Game.prototype.initiateBoard = function () {
-	for (var i = 0; i < 6; i++) {
-		var $newRow = $('<div>');
-		for (var j = 0; j < 8; j++) {
-			var $newCol = $('<div>');
-			$newCol.attr({
-				row: i,
-				col: j
-			});
-			$newCol.addClass('cell');
-			$newRow.append($newCol);
-		}
-		$newRow.addClass('row');
-		$('#board').append($newRow);
-	}
-
-	$('.cell').on('click', function () {
-		var row = $(this).attr('row');
-		var col = $(this).attr('col');
-		console.log('Row: ' + row + ', Col:' + col);
-	});
-
-	$('.cell').on('click', this.clicked);
-
-	$('#room-submit').on('click', function (e) {
-	    var room = $('#room-input').val();
-	    $('#room-id').html('Room: ' + room);
-	    socket.emit('join-room', room);
-	    myRoom = room;
-	    $('#room-input').val('');
-  	});
-}
-
-Game.prototype.clicked = function (e) {
-	var cell = e.target;
-	var row = $(cell).attr('row');
-	var col = $(cell).attr('col');
-
-	socket.emit('update-state', myRoom, player, row, col);
-}
+});
