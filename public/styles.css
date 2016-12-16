@@ -5,11 +5,12 @@ body {
 	background-size: 100%;
 	background-image: linear-gradient(to bottom, rgba(130, 160, 122, 0.5) 0%, rgba(130, 160, 122, 0.5) 100%), url("harambe.jpg");
 	position: relative;
-
-}
+	font-family: "Montserrant", sans-serif;
+}	
 
 h3 {
-
+	font-size: 20px;
+	color: white;
 }
 
 #begin-title {
