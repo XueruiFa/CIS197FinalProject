@@ -5,58 +5,58 @@ var myBoard = [];
 
 socket.on('room-full', function () {
 	$('.room-full').css('display', 'inline');
-	console.log("Room is currently full, please try again later!");
+	console.log('Room is currently full, please try again later!');
 });
 
 socket.on('win', function () {
-	console.log("You win!");
-	$('.victory').css("display", "block");
-	$("#room-title").css('display', 'block');
-	$("#room-input").css('display', 'inline');
-	$("#room-submit").css('display', 'inline');
+	console.log('You win!');
+	$('.victory').css('display', 'block');
+	$('#room-title').css('display', 'block');
+	$('#room-input').css('display', 'inline');
+	$('#room-submit').css('display', 'inline');
 	$('#player-id').css('display', 'none');
 	$('#turn-id').css('display', 'none');
 	socket.disconnect();
 });
 
 socket.on('lose', function () {
-	console.log("You lose!");
-	$('.defeat').css("display", "block");
-	$("#room-title").css('display', 'block');
-	$("#room-input").css('display', 'inline');
-	$("#room-submit").css('display', 'inline');
+	console.log('You lose!');
+	$('.defeat').css('display', 'block');
+	$('#room-title').css('display', 'block');
+	$('#room-input').css('display', 'inline');
+	$('#room-submit').css('display', 'inline');
 	$('#player-id').css('display', 'none');
 	$('#turn-id').css('display', 'none');
 	socket.disconnect();
 });
 
 socket.on('tie', function () {
-	console.log("You tied!");
-	$('.tie').css("display", "block");
-	$("#room-title").css('display', 'block');
-	$("#room-input").css('display', 'inline');
-	$("#room-submit").css('display', 'inline');
+	console.log('You tied!');
+	$('.tie').css('display', 'block');
+	$('#room-title').css('display', 'block');
+	$('#room-input').css('display', 'inline');
+	$('#room-submit').css('display', 'inline');
 	$('#player-id').css('display', 'none');
 	$('#turn-id').css('display', 'none');
 	socket.disconnect();
 });
 
 socket.on('patience', function () {
-	console.log("Patience hit");
-	$('#patience').css("display", "inline");
+	console.log('Patience hit');
+	$('#patience').css('display', 'inline');
 	setTimeout(function () {
-		$('#patience').css("display", "none");
+		$('#patience').css('display', 'none');
 	}, 3000);
 });
 
 
 socket.on('begin-game', function (id, num) {
-	$("#begin-title").css('display', 'block');
-	$("#room-title").css('display', 'none');
-	$("#room-input").css('display', 'none');
-	$("#room-submit").css('display', 'none');
+	$('#begin-title').css('display', 'block');
+	$('#room-title').css('display', 'none');
+	$('#room-input').css('display', 'none');
+	$('#room-submit').css('display', 'none');
 	player = num;
-	console.log("Player number: " + num);
+	console.log('Player number: ' + num);
 	$('#player-id').html('You are Player ' + num);
 	$('#turn-id').html('Player 1\'s turn!');
 });
@@ -66,12 +66,12 @@ socket.on('update-turn', function (room) {
 });
 
 socket.on('color-cell', function (r, c, turn) {
-	var audio = new Audio("stuffed-and-dropped.mp3");
+	var audio = new Audio('stuffed-and-dropped.mp3');
 	audio.play();
 	var $cell = $('.cell');
 	$cell.each(function () {
-		var row = $(this).attr("row");
-		var col = $(this).attr("col");
+		var row = $(this).attr('row');
+		var col = $(this).attr('col');
 		if (row == r && col == c) {
 			if (turn === 1) {
 				$(this).addClass('p1');
@@ -83,7 +83,7 @@ socket.on('color-cell', function (r, c, turn) {
 });
 
 socket.on('error', function(e) {
-	console.log("Hit error: " + e);
+	console.log('Hit error: ' + e);
 })
 
 var Game = function (board) {
@@ -104,18 +104,18 @@ Game.prototype.initiateBoard = function () {
 			$newRow.append($newCol);
 		}
 		$newRow.addClass('row');
-		$("#board").append($newRow);
+		$('#board').append($newRow);
 	}
 
-	$('.cell').on("click", function () {
+	$('.cell').on('click', function () {
 		var row = $(this).attr('row');
 		var col = $(this).attr('col');
-		console.log("Row: " + row + ", Col:" + col);
+		console.log('Row: ' + row + ', Col:' + col);
 	});
 
-	$('.cell').on("click", this.clicked);
+	$('.cell').on('click', this.clicked);
 
-	$('#room-submit').on("click", function (e) {
+	$('#room-submit').on('click', function (e) {
 	    var room = $('#room-input').val();
 	    $('#room-id').html('Room: ' + room);
 	    socket.emit('join-room', room);

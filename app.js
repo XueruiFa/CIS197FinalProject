@@ -109,21 +109,21 @@ io.on('connection', function(socket){
 		  				rooms[i]['p1Board'][r][col] = true;
 		  				rooms[i]['p2Board'][r][col] = false;
 		  				rooms[i]['board'][r][col] = true;	  				
-		  				console.log("Player 1: ");
+		  				console.log('Player 1: ');
 		  				console.log(rooms[i]['p1Board'])
-		  				console.log("Player 2: ");
+		  				console.log('Player 2: ');
 		  				console.log(rooms[i]['p2Board']);
-		  				console.log("Board: ");	
+		  				console.log('Board: ');	
 		  				console.log(rooms[i]['board']);	  				
 		  			} else {
 		  				rooms[i]['p2Board'][r][col] = true;
 		  				rooms[i]['p1Board'][r][col] = false;	  				
 	   					rooms[i]['board'][r][col] = true;
-		  				console.log("Player 1: ");
+		  				console.log('Player 1: ');
 		  				console.log(rooms[i]['p1Board'])
-		  				console.log("Player 2: ");
+		  				console.log('Player 2: ');
 		  				console.log(rooms[i]['p2Board']);
-		  				console.log("Board: ");	
+		  				console.log('Board: ');	
 		  				console.log(rooms[i]['board']);	
 		  			}
 
@@ -161,7 +161,7 @@ io.on('connection', function(socket){
   				}
   			}
   		}
-  		console.log("--------------------------------------------------------");
+  		console.log('--------------------------------------------------------');
 
   	});
 
