@@ -108,23 +108,11 @@ io.on('connection', function(socket){
 		  			if (currTurn === 1) {
 		  				rooms[i]['p1Board'][r][col] = true;
 		  				rooms[i]['p2Board'][r][col] = false;
-		  				rooms[i]['board'][r][col] = true;	  				
-		  				console.log('Player 1: ');
-		  				console.log(rooms[i]['p1Board'])
-		  				console.log('Player 2: ');
-		  				console.log(rooms[i]['p2Board']);
-		  				console.log('Board: ');	
-		  				console.log(rooms[i]['board']);	  				
+		  				rooms[i]['board'][r][col] = true;	  				 				
 		  			} else {
 		  				rooms[i]['p2Board'][r][col] = true;
 		  				rooms[i]['p1Board'][r][col] = false;	  				
 	   					rooms[i]['board'][r][col] = true;
-		  				console.log('Player 1: ');
-		  				console.log(rooms[i]['p1Board'])
-		  				console.log('Player 2: ');
-		  				console.log(rooms[i]['p2Board']);
-		  				console.log('Board: ');	
-		  				console.log(rooms[i]['board']);	
 		  			}
 
 	  				io.to(playerID).emit('color-cell', r, col, player);
@@ -137,21 +125,17 @@ io.on('connection', function(socket){
 		   				if (checkWinCondition(rooms[i]['p1Board'])) {
 		  					io.to(playerID).emit('win');
 		  					io.to(opponentID).emit('lose');
-		  				}
-
-		  				if (checkGameOver(rooms[i]['board'])) {
+		  				} else if (checkGameOver(rooms[i]['board'])) {
 		  					io.to(playerID).emit('tie');
-		  					io.to(opponentID).emit('lose');
+		  					io.to(opponentID).emit('tie');
 		  				}
 		  			} else {
 		   				if (checkWinCondition(rooms[i]['p2Board'])) {
 		  					io.to(playerID).emit('win');
 		  					io.to(opponentID).emit('lose');
-		  				}
-
-		  				if (checkGameOver(rooms[i]['board'])) {
+		  				} else if (checkGameOver(rooms[i]['board'])) {
 		  					io.to(playerID).emit('tie');
-		  					io.to(opponentID).emit('lose');
+		  					io.to(opponentID).emit('tie');
 		  				}
 		  			}	
 	  			}
@@ -161,8 +145,6 @@ io.on('connection', function(socket){
   				}
   			}
   		}
-  		console.log('--------------------------------------------------------');
-
   	});
 
   	var checkWinCondition = function (board) {

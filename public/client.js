@@ -11,9 +11,7 @@ socket.on('room-full', function () {
 socket.on('win', function () {
 	console.log('You win!');
 	$('.victory').css('display', 'block');
-	$('#room-title').css('display', 'block');
-	$('#room-input').css('display', 'inline');
-	$('#room-submit').css('display', 'inline');
+	$('#begin-title').css('display', 'none');
 	$('#player-id').css('display', 'none');
 	$('#turn-id').css('display', 'none');
 	socket.disconnect();
@@ -22,9 +20,7 @@ socket.on('win', function () {
 socket.on('lose', function () {
 	console.log('You lose!');
 	$('.defeat').css('display', 'block');
-	$('#room-title').css('display', 'block');
-	$('#room-input').css('display', 'inline');
-	$('#room-submit').css('display', 'inline');
+	$('#begin-title').css('display', 'none');
 	$('#player-id').css('display', 'none');
 	$('#turn-id').css('display', 'none');
 	socket.disconnect();
@@ -33,9 +29,7 @@ socket.on('lose', function () {
 socket.on('tie', function () {
 	console.log('You tied!');
 	$('.tie').css('display', 'block');
-	$('#room-title').css('display', 'block');
-	$('#room-input').css('display', 'inline');
-	$('#room-submit').css('display', 'inline');
+	$('#begin-title').css('display', 'none');
 	$('#player-id').css('display', 'none');
 	$('#turn-id').css('display', 'none');
 	socket.disconnect();
@@ -66,7 +60,7 @@ socket.on('update-turn', function (room) {
 });
 
 socket.on('color-cell', function (r, c, turn) {
-	var audio = new Audio('stuffed-and-dropped.mp3');
+	var audio = new Audio('./stuffed-and-dropped.mp3');
 	audio.play();
 	var $cell = $('.cell');
 	$cell.each(function () {
