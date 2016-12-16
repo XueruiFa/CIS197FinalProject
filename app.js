@@ -187,8 +187,8 @@ io.on('connection', function(socket){
   				}
   			}
   		}
-  		for (var i = 5; i > 2; i--) {
-  			for (var j = 3; j < 8; j++) {
+  		for (var i = 4; i < 6; i++) {
+  			for (var j = 0; j < 5; j++) {
   				if (board[i][j] && board[i-1][j+1] && board[i-2][j+2] && board[i-3][j+3]) {
   					return true;
   				}
